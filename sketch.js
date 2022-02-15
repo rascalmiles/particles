@@ -1,11 +1,13 @@
 let particles = [];
-let dog;
+let animals = [];
+// let cat;
 
 
 function setup() {
   createCanvas(800, 800);
-  dog = loadImage('assets/dog.png');
-  for (var i = 0; i < 1000; i++) {
+  animals[0] = loadImage('assets/dog.png');
+  animals[1] = loadImage('assets/cat.png');
+  for (var i = 0; i < 400; i++) {
     particles.push(new Particle);
   }
 
@@ -28,14 +30,15 @@ class Particle { //what data our functions have
   constructor(){
     this.x = random(width);
     this.y = random(height);
-    this.size = random(5, 10);
+    this.size = random(25, 40);
     this.xSpeed = random(-1, 1);
-    this.ySpeed = random(0, 2);
+    this.ySpeed = random(0.5, 2.5);
+    this.image = int(random(2));
   }
 
   display(){
-    rect(this.x, this.y, this.size, this.size);
-    image(dog, this.x, this.y, this.size, this.size);
+    // rect(this.x, this.y, this.size, this.size);
+    image(animals[this.image], this.x, this.y, this.size, this.size);
   }
 
   move(){
@@ -44,8 +47,8 @@ class Particle { //what data our functions have
     if (this.x > width || this.x <0){
       this.x = random(width);
     }
-    if (this.y > height || this.y <0){
-      this.y = random(height);
+    if (this.y > height){
+      this.y = -100;
     }
   }
 
